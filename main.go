@@ -6,7 +6,7 @@ import (
 
 	filter_csv "github.com/jeffersonmss/whc-cli/csv"
 
-	"github.com/spf13/cobra"
+	"github.com/spf13/cobra" // Librery used to create a cli application
 )
 
 func main() {
@@ -21,7 +21,7 @@ func main() {
 
 	// Run main cli command
 	if err := rootCmd.Execute(); err != nil {
-		fmt.Println("Erro ao executar o comando:", err)
+		fmt.Println("Error running the command:", err)
 		os.Exit(1)
 	}
 }
