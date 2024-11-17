@@ -2,7 +2,7 @@ name: Go build and publish artifact
 
 on:
   push:
-    branches: [ $default-branch ]
+    branches: [ main ]
 
 jobs:
 
