@@ -31,7 +31,7 @@ jobs:
     - name: Run Trivy vulnerability scanner # Test the image using trivy
       uses: aquasecurity/trivy-action@0.28.0
       with:
-        image-ref: ${{ secrets.DOCKERHUB_USERNAME}}/whc:${{ github.sha }}
+        image-ref: ${{ secrets.DOCKERHUB_USERNAME}}/whc:latest
         format: 'table'
         exit-code: '1'
         ignore-unfixed: true
