@@ -26,9 +26,7 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         push: true
-        tags: 
-          - ${{ secrets.DOCKERHUB_USERNAME}}/whc:${{ github.sha }}
-          - ${{ secrets.DOCKERHUB_USERNAME}}/whc:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME}}/whc:latest
 
     - name: Run Trivy vulnerability scanner # Test the image using trivy
       uses: aquasecurity/trivy-action@0.28.0
