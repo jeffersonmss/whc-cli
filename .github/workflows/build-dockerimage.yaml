@@ -7,7 +7,6 @@ on:
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -27,18 +26,18 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME}}/whc:${{ github.sha }}
+        tags: 
+          ${{ secrets.DOCKERHUB_USERNAME}}/whc:${{ github.sha }}
+          ${{ secrets.DOCKERHUB_USERNAME}}/whc:latest
 
     - name: Run Trivy vulnerability scanner # Test the image using trivy
       uses: aquasecurity/trivy-action@0.28.0
       with:
         image-ref: ${{ secrets.DOCKERHUB_USERNAME}}/whc:${{ github.sha }}
-        format: 'sarif'
-        output: 'trivy-results.sarif'
-
-    - name: Upload Trivy scan results to GitHub Security tab # Upload the test result to github
-      uses: github/codeql-action/upload-sarif@v3
-      with:
-        sarif_file: 'trivy-results.sarif'
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL,HIGH'
 
 
